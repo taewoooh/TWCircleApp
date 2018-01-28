@@ -2,8 +2,13 @@ package com.example.lg.twcircleapp;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomSheetBehavior;
+import android.support.design.widget.BottomSheetDialog;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.SpannableString;
@@ -26,7 +31,7 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     MaterialEditText editid, editpassword;
     ImageView delete, delete2, hide;
-    RelativeLayout layout;
+    RelativeLayout layout,relativeLayout;
     Button loginbtn;
     TextView view;
     InputMethodManager imm;
@@ -47,12 +52,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         delete2 = (ImageView) findViewById(R.id.delete2);
         view = (TextView) findViewById(R.id.textlogin);
         loginbtn = (Button) findViewById(R.id.loginbtn);
+        /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        setTitle("Bottom Sheet Example");*/
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TWBottomSheetDialog bottomSheetDialog = TWBottomSheetDialog.getInstance();
+                bottomSheetDialog.show(getSupportFragmentManager(),"bottomSheet");
+            }
+        });*/
 
         delete.setOnClickListener(this);
         delete2.setOnClickListener(this);
         hide.setOnClickListener(this);
         layout.setOnClickListener(this);
         loginbtn.setOnClickListener(this);
+        view.setOnClickListener(this);
 
         SpannableString content = new SpannableString("다른방법으로 로그인");
         content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
@@ -148,6 +165,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         }else if (v.getId() == R.id.textlogin){
+
+            TWBottomSheetDialog bottomSheetDialog = TWBottomSheetDialog.getInstance();
+            bottomSheetDialog.show(getSupportFragmentManager(),"bottomSheet");
+
 
 
         }

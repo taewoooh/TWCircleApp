@@ -90,7 +90,7 @@
     <Button
         android:id="@+id/loginbtn"
         android:layout_width="320dp"
-        android:layout_height="45dp"
+        android:layout_height="40dp"
         android:layout_below="@+id/editpassword"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
@@ -110,6 +110,34 @@
         android:text="다른 방법으로 로그인"
         android:textStyle="bold"
         android:textColor="@android:color/white"/>
+<android.support.design.widget.CoordinatorLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_main" />
+
+
+
+
+
+
+</android.support.design.widget.CoordinatorLayout>
+
+
+
+
+
+
+
 
 
 </RelativeLayout>
