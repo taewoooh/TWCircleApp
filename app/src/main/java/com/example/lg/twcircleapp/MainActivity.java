@@ -1,16 +1,9 @@
 package com.example.lg.twcircleapp;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.design.widget.BottomSheetDialog;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.SpannableString;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
@@ -19,7 +12,6 @@ import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -27,15 +19,20 @@ import android.widget.Toast;
 
 import com.rengwuxian.materialedittext.MaterialEditText;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     MaterialEditText editid, editpassword;
     ImageView delete, delete2, hide;
-    RelativeLayout layout,relativeLayout;
+    RelativeLayout layout, relativeLayout;
     Button loginbtn;
     TextView view;
     InputMethodManager imm;
     boolean aBoolean = true;
+    boolean booid, boopass;
+
 
 
     @Override
@@ -52,17 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         delete2 = (ImageView) findViewById(R.id.delete2);
         view = (TextView) findViewById(R.id.textlogin);
         loginbtn = (Button) findViewById(R.id.loginbtn);
-        /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        setTitle("Bottom Sheet Example");*/
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TWBottomSheetDialog bottomSheetDialog = TWBottomSheetDialog.getInstance();
-                bottomSheetDialog.show(getSupportFragmentManager(),"bottomSheet");
-            }
-        });*/
+
 
         delete.setOnClickListener(this);
         delete2.setOnClickListener(this);
@@ -89,6 +76,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void afterTextChanged(Editable s) {
+
+
+                String emailid = "^[_a-zA-Z0-9-\\.]+@[\\.a-zA-Z0-9-]+\\.[a-zA-Z]+$";  //이메일 형식 체크
+                Pattern p = Pattern.compile(emailid);
+                Matcher m = p.matcher(s);
+                booid = m.matches();
+
+
                 if (s.length() > 0) {
 
                     delete.setVisibility(View.VISIBLE);
@@ -113,6 +108,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void afterTextChanged(Editable s) {
+
+
+                String regex = "^[a-zA-Z0-9!@.#$%^&*?_~]{4,16}$";// 패스워드 4자리에서 16자리까지 조건식
+                Pattern p = Pattern.compile(regex);
+                Matcher m = p.matcher(s);
+                boopass = m.matches();
+
 
                 if (s.length() > 0) {
 
@@ -161,16 +163,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (v.getId() == R.id.delete2) {
 
             editpassword.setText(null);
-        }else if (v.getId() == R.id.loginbtn){
+        } else if (v.getId() == R.id.loginbtn) {
+
+            if (booid == true && boopass == true){
+
+                new SuperToast("성공", "D81B60", MainActivity.this);
+
+            }
+
+            //new SuperToast("테스트", "D81B60", MainActivity.this);
 
 
-        }else if (v.getId() == R.id.textlogin){
+        } else if (v.getId() == R.id.textlogin) {
 
             TWBottomSheetDialog bottomSheetDialog = TWBottomSheetDialog.getInstance();
-            bottomSheetDialog.show(getSupportFragmentManager(),"bottomSheet");
+            bottomSheetDialog.show(getSupportFragmentManager(), "bottomSheet");
+
+
+        }
+    }
+
+    public void Checked() {
+
+        if (booid == true && boopass == true){
 
 
 
         }
+
+
     }
 }

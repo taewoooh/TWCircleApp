@@ -13,8 +13,8 @@
         >
         <ImageView
             android:src="@drawable/twitter"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:padding="12dp"
             android:layout_marginLeft="8dp"
             />
@@ -36,8 +36,8 @@
         >
         <ImageView
             android:src="@drawable/google"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:padding="12dp"
             android:layout_marginLeft="8dp"
             />
@@ -59,8 +59,8 @@
         >
         <ImageView
             android:src="@drawable/kakaotalk"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:padding="12dp"
             android:layout_marginLeft="8dp"
             />
@@ -82,8 +82,8 @@
         >
         <ImageView
             android:src="@drawable/facebook"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:padding="12dp"
             android:layout_marginLeft="8dp"
             />
