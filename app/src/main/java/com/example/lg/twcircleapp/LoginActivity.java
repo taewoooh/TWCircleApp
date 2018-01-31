@@ -249,16 +249,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String userpassword = editpassword.getText().toString();
         String usertime = getTime();
 
-        ProgressDialog asyncDialog = new ProgressDialog(
-                LoginActivity.this);
+        CustomProgressDialog dialog = new CustomProgressDialog(LoginActivity.this);
+
+
 
         @Override
         protected void onPreExecute() {
 
-            asyncDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            asyncDialog.;
-            asyncDialog.setMessage("로딩중입니다..");
-            asyncDialog.show();
+
+            dialog.show();
 
 
             // show dialog
@@ -307,7 +306,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            asyncDialog.dismiss();
+            dialog.dismiss();
             finish();
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
