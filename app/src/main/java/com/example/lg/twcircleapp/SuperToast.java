@@ -14,8 +14,13 @@ import com.github.johnpersano.supertoasts.library.utils.PaletteUtils;
 
 public class SuperToast {
 
+   SuperActivityToast toast;
+
+
+
     public SuperToast(String message, String color, Context context) {
 
+        if (toast == null )
         SuperActivityToast.create(context, new Style(), Style.DURATION_SHORT)
                 .setText(message)
                 //.setDuration(Style.DURATION_SHORT)
@@ -26,4 +31,5 @@ public class SuperToast {
                 .setColor(PaletteUtils.getSolidColor(color))
                 .setAnimations(Style.FRAME_KITKAT).show();
     }
+
 }

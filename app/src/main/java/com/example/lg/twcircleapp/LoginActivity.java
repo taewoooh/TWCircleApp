@@ -9,7 +9,11 @@ import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.text.style.UnderlineSpan;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -28,7 +32,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     ImageView delete, delete2, hide;
     RelativeLayout layout, relativeLayout;
     Button loginbtn;
-    TextView view;
+    SuperToast toast;
+    TextView view, warning;
     InputMethodManager imm;
     boolean aBoolean = true;
     boolean booid, boopass;
@@ -47,9 +52,28 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         delete2 = (ImageView) findViewById(R.id.delete2);
         view = (TextView) findViewById(R.id.textlogin);
-       loginbtn = (Button) findViewById(R.id.loginbtn);
+        loginbtn = (Button) findViewById(R.id.loginbtn);
+        warning = (TextView) findViewById(R.id.warning);
+
+        loginbtn.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    loginbtn.setAlpha(0.5f);
+
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    loginbtn.setAlpha(1.0f);
+
+                }
+                return false;
+            }
+        });
 
 
+        loginbtn.setAlpha(0.5f);
+        loginbtn.setClickable(false);
+        loginbtn.setEnabled(false);
 
 
         delete.setOnClickListener(this);
@@ -85,7 +109,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Matcher m = p.matcher(s);
                 booid = m.matches();
 
-
+                cheked();
                 if (s.length() > 0) {
 
                     delete.setVisibility(View.VISIBLE);
@@ -110,7 +134,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                loginbtn.setAlpha(0.5f);
+                loginbtn.setClickable(false);
+                loginbtn.setEnabled(false);
 
                 String regex = "^[a-zA-Z0-9!@.#$%^&*?_~]{4,16}$";// 패스워드 4자리에서 16자리까지 조건식
                 Pattern p = Pattern.compile(regex);
@@ -125,7 +151,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                     delete2.setVisibility(View.INVISIBLE);
                 }
-
+                cheked();
             }
         });
 
@@ -148,12 +174,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Toast.makeText(getApplicationContext(), "true", Toast.LENGTH_SHORT).show();
                 hide.setBackground(getDrawable(R.drawable.onhide));
 
+                editpassword.setSelection(editpassword.getText().length());
                 aBoolean = false;
 
 
             } else if (aBoolean == false) {
                 editpassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 Toast.makeText(getApplicationContext(), "false", Toast.LENGTH_SHORT).show();
+                editpassword.setSelection(editpassword.getText().length()); // 포커스 editppassword length 위치로 이동시키기.
                 hide.setBackground(getDrawable(R.drawable.offhide));
                 aBoolean = true;
 
@@ -167,13 +195,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             editpassword.setText(null);
         } else if (v.getId() == R.id.loginbtn) {
 
-            if (booid == true && boopass == true) {
-
-
-            } else {
-                new SuperToast("접속 실패", "D81B60", LoginActivity.this);
-
-            }
 
 
 
@@ -184,6 +205,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
         }
+    }
+
+    public void cheked() {
+
+        if (booid == true && boopass == true) {
+
+            loginbtn.setAlpha(1.0f);
+            loginbtn.setClickable(true);
+            loginbtn.setEnabled(true);
+
+        } else {
+
+
+            loginbtn.setAlpha(0.5f);
+            loginbtn.setClickable(false);
+            loginbtn.setEnabled(false);
+
+        }
+
     }
 
 

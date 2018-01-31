@@ -63,6 +63,19 @@
         app:met_primaryColor="?colorAccent"
         app:met_singleLineEllipsis="true" />
 
+    <TextView
+        android:id="@+id/warning"
+        android:layout_below="@+id/editpassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="10dp"
+        android:paddingLeft="47dp"
+        android:visibility="invisible"
+        android:text="이메일 또는 비밀번호가 틀렸습니다."
+        android:textColor="#d50000"
+
+        />
+
 
     <ImageView
         android:id="@+id/hide"
@@ -94,7 +107,7 @@
         android:layout_below="@+id/editpassword"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:background="@drawable/button"
+        android:background="#1E88E5"
         android:text="로그인"
         android:textColor="@android:color/white"
         android:textSize="15dp"
