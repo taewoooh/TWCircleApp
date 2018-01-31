@@ -1,6 +1,9 @@
 package com.example.lg.twcircleapp;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -9,11 +12,8 @@ import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.text.style.UnderlineSpan;
-import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -21,8 +21,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -37,6 +44,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     InputMethodManager imm;
     boolean aBoolean = true;
     boolean booid, boopass;
+    static boolean success;
+    long mNow;
+    Date mDate;
+    SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
 
     @Override
@@ -194,9 +205,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             editpassword.setText(null);
         } else if (v.getId() == R.id.loginbtn) {
-
-
-
+            Logintask task = new Logintask();
+            task.execute();
 
         } else if (v.getId() == R.id.textlogin) {
 
@@ -226,5 +236,84 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
+    private String getTime() {        //서버로 전달할 접속 시간 체크
+        mNow = System.currentTimeMillis();
+        mDate = new Date(mNow);
+        return mFormat.format(mDate);
+    }
+
+    private class Logintask extends AsyncTask<Void, Void, Void> {
+
+
+        String userid = editid.getText().toString();
+        String userpassword = editpassword.getText().toString();
+        String usertime = getTime();
+
+        ProgressDialog asyncDialog = new ProgressDialog(
+                LoginActivity.this);
+
+        @Override
+        protected void onPreExecute() {
+
+            asyncDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            asyncDialog.;
+            asyncDialog.setMessage("로딩중입니다..");
+            asyncDialog.show();
+
+
+            // show dialog
+
+
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            while (true) {
+
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+
+                }
+
+
+                com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonReponse = new JSONObject(response);
+                            success = jsonReponse.getBoolean("success");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+                RegisterRequest registerRequest = new RegisterRequest(userid, userpassword, usertime, responseListener);
+                RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
+                queue.add(registerRequest);
+                if (success == true) {         //서버하고 통신이 정상적으로 이루졌을때 value =1 이라는 식별값을 갖는다
+
+                    break;
+                } else {                       //서버하고 통신이 정상적으로 이뤄지지 않았을때는 무한 루프
+
+                    continue;
+                }
+
+            }
+            return null;
+        }
+
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            asyncDialog.dismiss();
+            finish();
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
+
+
+    }
 
 }
