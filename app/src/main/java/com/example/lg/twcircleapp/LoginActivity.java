@@ -12,6 +12,7 @@ import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.text.style.UnderlineSpan;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -54,6 +55,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
+        Log.e("onCreate", "" + success);
 
         editid = (MaterialEditText) findViewById(R.id.editid);
         editpassword = (MaterialEditText) findViewById(R.id.editpassword);
@@ -205,8 +209,32 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             editpassword.setText(null);
         } else if (v.getId() == R.id.loginbtn) {
+
+            TWPreference pre = new TWPreference(LoginActivity.this);
+
+            String userid = editid.getText().toString();
+            String userpassword = editpassword.getText().toString();
+            String usertime = getTime();
+
+            com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        JSONObject jsonReponse = new JSONObject(response);
+                        success = jsonReponse.getBoolean("success");
+                        Log.e("onResponse", "" + success);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+            RegisterRequest registerRequest = new RegisterRequest(userid, userpassword, usertime, responseListener);
+            RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
+            queue.add(registerRequest);
+            Log.e("loginbtn click", "" + success);
             Logintask task = new Logintask();
             task.execute();
+            Log.e("loginbtn click after", "" + success);
 
         } else if (v.getId() == R.id.textlogin) {
 
@@ -245,74 +273,57 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private class Logintask extends AsyncTask<Void, Void, Void> {
 
 
-        String userid = editid.getText().toString();
-        String userpassword = editpassword.getText().toString();
-        String usertime = getTime();
-
         CustomProgressDialog dialog = new CustomProgressDialog(LoginActivity.this);
-
 
 
         @Override
         protected void onPreExecute() {
 
-
+            Log.e("Logintask onPreExecute", "" + success);
             dialog.show();
-
-
-            // show dialog
-
 
             super.onPreExecute();
         }
 
         @Override
         protected Void doInBackground(Void... params) {
-            while (true) {
 
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-
-                }
-
-
-                com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonReponse = new JSONObject(response);
-                            success = jsonReponse.getBoolean("success");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                };
-                RegisterRequest registerRequest = new RegisterRequest(userid, userpassword, usertime, responseListener);
-                RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
-                queue.add(registerRequest);
-                if (success == true) {         //서버하고 통신이 정상적으로 이루졌을때 value =1 이라는 식별값을 갖는다
-
-                    break;
-                } else {                       //서버하고 통신이 정상적으로 이뤄지지 않았을때는 무한 루프
-
-                    continue;
-                }
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
 
             }
+
+
             return null;
         }
 
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            dialog.dismiss();
-            finish();
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(intent);
+            if (success == true) {
+
+
+                Log.e("onPostExcute ", "" + success);
+                dialog.dismiss();
+                finish();
+                Toast.makeText(getApplicationContext(),"로그인 성공!",Toast.LENGTH_SHORT).show();
+                Log.e("onPostExcute2 ", "" + success);
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+
+            } else if (success == false) {
+
+
+                Toast.makeText(getApplicationContext(),"아이디 또는 비밀번호가 일치하지 않습니다.",Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+
+
         }
 
 
     }
+
 
 }
