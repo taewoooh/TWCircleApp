@@ -43,9 +43,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     SuperToast toast;
     TextView view, warning;
     InputMethodManager imm;
-    boolean aBoolean = true;
+    boolean aBoolean ;
     boolean booid, boopass;
-    static boolean success;
+    static int value = 0;
+    static String test;
     long mNow;
     Date mDate;
     SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -57,7 +58,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
 
 
-        Log.e("onCreate", "" + success);
+        Log.e("onCreate", "" + value);
 
         editid = (MaterialEditText) findViewById(R.id.editid);
         editpassword = (MaterialEditText) findViewById(R.id.editpassword);
@@ -221,8 +222,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 public void onResponse(String response) {
                     try {
                         JSONObject jsonReponse = new JSONObject(response);
-                        success = jsonReponse.getBoolean("success");
-                        Log.e("onResponse", "" + success);
+                        value = jsonReponse.getInt("value");
+
+                        Log.e("onResponse", "" + value+"<  >"+test);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -231,10 +233,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             RegisterRequest registerRequest = new RegisterRequest(userid, userpassword, usertime, responseListener);
             RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
             queue.add(registerRequest);
-            Log.e("loginbtn click", "" + success);
+            Log.e("loginbtn click", "" + value);
             Logintask task = new Logintask();
             task.execute();
-            Log.e("loginbtn click after", "" + success);
+            Log.e("loginbtn click after", "" + value);
 
         } else if (v.getId() == R.id.textlogin) {
 
@@ -279,7 +281,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         @Override
         protected void onPreExecute() {
 
-            Log.e("Logintask onPreExecute", "" + success);
+            Log.e("Logintask onPreExecute", "" + value);
             dialog.show();
 
             super.onPreExecute();
@@ -301,22 +303,26 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            if (success == true) {
+            if (value == 1) {
 
 
-                Log.e("onPostExcute ", "" + success);
+                Log.e("onPostExcute ", "" + value);
                 dialog.dismiss();
                 finish();
-                Toast.makeText(getApplicationContext(),"로그인 성공!",Toast.LENGTH_SHORT).show();
-                Log.e("onPostExcute2 ", "" + success);
+                Toast.makeText(getApplicationContext(),"로그인 성공!"+value,Toast.LENGTH_SHORT).show();
+                Log.e("onPostExcute2 ", "" + value);
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
 
-            } else if (success == false) {
+            } else if (value == 2) {
 
 
-                Toast.makeText(getApplicationContext(),"아이디 또는 비밀번호가 일치하지 않습니다.",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"아이디 또는 비밀번호가 일치하지 않습니다."+value,Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
+            }else if (value == 3){
+                Toast.makeText(getApplicationContext(),"회원가입 성공 ! "+value,Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
             }
 
 
