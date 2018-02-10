@@ -13,13 +13,13 @@
         >
         <ImageView
             android:src="@drawable/twitter"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:padding="12dp"
             android:layout_marginLeft="8dp"
             />
         <TextView
-            android:text="트위터로 계속하기"
+            android:text="트위터로 로그인"
             android:textColor="#838383"
             android:textSize="16sp"
             android:layout_width="match_parent"
@@ -36,13 +36,13 @@
         >
         <ImageView
             android:src="@drawable/google"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:padding="12dp"
             android:layout_marginLeft="8dp"
             />
         <TextView
-            android:text="구글로 계속하기"
+            android:text="구글로 로그인"
             android:textColor="#838383"
             android:textSize="16sp"
             android:layout_width="match_parent"
@@ -59,13 +59,13 @@
         >
         <ImageView
             android:src="@drawable/kakaotalk"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:padding="12dp"
             android:layout_marginLeft="8dp"
             />
         <TextView
-            android:text="카카오톡으로 계속하기"
+            android:text="카카오톡으로 로그인"
             android:textColor="#838383"
             android:textSize="16sp"
             android:layout_width="match_parent"
@@ -82,13 +82,13 @@
         >
         <ImageView
             android:src="@drawable/facebook"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:padding="12dp"
             android:layout_marginLeft="8dp"
             />
         <TextView
-            android:text="페이스북으로 계속하기"
+            android:text="페이스북으로 로그인"
             android:textColor="#838383"
             android:textSize="16sp"
             android:layout_width="match_parent"
