@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "430710357226",
+    "firebase_url": "https://circleapp-194811.firebaseio.com",
+    "project_id": "circleapp-194811",
+    "storage_bucket": "circleapp-194811.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:430710357226:android:0e978cde58c795b3",
+        "android_client_info": {
+          "package_name": "com.example.lg.twcircleapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "430710357226-e1110ksj2i37s7v5p4b9r9ml807j348m.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "430710357226-l4rc5hh87hspo5ph894f3ch3lce702v0.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "430710357226-1vl4t90qr632h2hmbdp2f7fdh2pl7ek1.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "430710357226-7g6qgcsfhubllh86b8pq4uui5c2qo888.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.lg.twcircleapp",
+            "certificate_hash": "a8d018e107649ee049488b063db01b5483b6bc93"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAd6ouMVk0Vz2orY9AVzmkHXeSH5fW2l4k"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "430710357226-e1110ksj2i37s7v5p4b9r9ml807j348m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
