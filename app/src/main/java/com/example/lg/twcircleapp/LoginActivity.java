@@ -51,9 +51,9 @@ import java.util.regex.Pattern;
 
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener,GoogleApiClient.OnConnectionFailedListener{
-    private static final int RC_SIGN_IN = 10;
+    /*private static final int RC_SIGN_IN = 10;
     private GoogleApiClient mGoogleApiClient;
-    private FirebaseAuth mAuth;
+    private FirebaseAuth mAuth;*/
     MaterialEditText editid, editpassword;
     ImageView delete, delete2, hide;
     RelativeLayout layout, relativeLayout;
@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mAuth = FirebaseAuth.getInstance();
+       /* mAuth = FirebaseAuth.getInstance();
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -83,9 +83,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 .build();
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this /* FragmentActivity */,  this /* OnConnectionFailedListener */)
+                .enableAutoManage(this *//* FragmentActivity *//*,  this *//* OnConnectionFailedListener *//*)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
+                .build();*/
 
 
         Log.e("onCreate", "" + value);
@@ -100,18 +100,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         view = (TextView) findViewById(R.id.textlogin);
         loginbtn = (Button) findViewById(R.id.loginbtn);
         warning = (TextView) findViewById(R.id.warning);
-        SignInButton button = (SignInButton)findViewById(R.id.login_button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-                startActivityForResult(signInIntent, RC_SIGN_IN);
-
-
-                Toast.makeText(getApplication(),"SignButton",Toast.LENGTH_SHORT).show();
-            }
-        });
 
         loginbtn.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -217,7 +205,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
 
-    @Override
+   /* @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -245,10 +233,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         if (task.isSuccessful()) {
 
 
-                          /*  // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);*/
+                            // Sign in success, update UI with the signed-in user's information
+
                         } else {
                           Toast.makeText(LoginActivity.this,"Firebase아이디 생성이 완료 되었습니다.",Toast.LENGTH_SHORT).show();
                         }
@@ -256,8 +242,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         // ...
                     }
                 });
-    }
-
+    }*/
 
     @Override
     public void onClick(View v) {
