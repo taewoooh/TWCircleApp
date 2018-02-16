@@ -1,5 +1,6 @@
 package com.example.lg.twcircleapp;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -32,6 +34,7 @@ public class TWBottomSheetDialog extends BottomSheetDialogFragment implements Vi
     private static final int RC_SIGN_IN = 10;
     private GoogleApiClient mGoogleApiClient;
     private FirebaseAuth mAuth;
+
 
 
     public static TWBottomSheetDialog getInstance() { return new TWBottomSheetDialog(); }
@@ -120,6 +123,10 @@ public class TWBottomSheetDialog extends BottomSheetDialogFragment implements Vi
                 Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
                 startActivityForResult(signInIntent, RC_SIGN_IN);
 
+                Intent intent = new Intent(getActivity(),MainActivity.class);
+                startActivity(intent);
+
+
                 break;
             case R.id.kakao:
                 Toast.makeText(getContext(),"Cloud", Toast.LENGTH_SHORT).show();
@@ -127,6 +134,7 @@ public class TWBottomSheetDialog extends BottomSheetDialogFragment implements Vi
             case R.id.facebook:
                 Toast.makeText(getContext(),"Bluetooth", Toast.LENGTH_SHORT).show();
                 break;
+
         }
         dismiss();
     }

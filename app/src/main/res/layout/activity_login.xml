@@ -112,6 +112,13 @@
         android:textColor="@android:color/white"
         android:textSize="15dp"
         android:textStyle="bold" />
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/loginbutton"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/textlogin"
+        android:layout_centerHorizontal="true"/>
+
 
 
     <TextView

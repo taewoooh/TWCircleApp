@@ -3,6 +3,9 @@ package com.example.lg.twcircleapp;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,6 +16,7 @@ import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.text.style.UnderlineSpan;
+import android.util.Base64;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -25,6 +29,7 @@ import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -44,24 +49,25 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener,GoogleApiClient.OnConnectionFailedListener{
-    /*private static final int RC_SIGN_IN = 10;
-    private GoogleApiClient mGoogleApiClient;
-    private FirebaseAuth mAuth;*/
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
+
     MaterialEditText editid, editpassword;
     ImageView delete, delete2, hide;
     RelativeLayout layout, relativeLayout;
     Button loginbtn;
+    LoginButton loginButton;
     SuperToast toast;
     TextView view, warning;
     InputMethodManager imm;
-    boolean aBoolean ;
+    boolean aBoolean;
     boolean booid, boopass;
     static int value = 0;
     static String test;
@@ -74,18 +80,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-       /* mAuth = FirebaseAuth.getInstance();
-
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this *//* FragmentActivity *//*,  this *//* OnConnectionFailedListener *//*)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();*/
 
 
         Log.e("onCreate", "" + value);
@@ -100,6 +94,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         view = (TextView) findViewById(R.id.textlogin);
         loginbtn = (Button) findViewById(R.id.loginbtn);
         warning = (TextView) findViewById(R.id.warning);
+        loginButton = (LoginButton) findViewById(R.id.loginbutton);
+
 
         loginbtn.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -205,45 +201,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
 
-   /* @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
-            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            if (result.isSuccess()) {
-                // Google Sign In was successful, authenticate with Firebase
-                GoogleSignInAccount account = result.getSignInAccount();
-                firebaseAuthWithGoogle(account);
-            } else {
-                // Google Sign In failed, update UI appropriately
-                // ...
-            }
-        }
-    }
-    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
-
-
-        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-
-
-                            // Sign in success, update UI with the signed-in user's information
-
-                        } else {
-                          Toast.makeText(LoginActivity.this,"Firebase아이디 생성이 완료 되었습니다.",Toast.LENGTH_SHORT).show();
-                        }
-
-                        // ...
-                    }
-                });
-    }*/
-
     @Override
     public void onClick(View v) {
 
@@ -293,7 +250,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         JSONObject jsonReponse = new JSONObject(response);
                         value = jsonReponse.getInt("value");
 
-                        Log.e("onResponse", "" + value+"<  >"+test);
+                        Log.e("onResponse", "" + value + "<  >" + test);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -383,7 +340,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Log.e("onPostExcute ", "" + value);
                 dialog.dismiss();
                 finish();
-                Toast.makeText(getApplicationContext(),"로그인 성공!"+value,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "로그인 성공!" + value, Toast.LENGTH_SHORT).show();
                 Log.e("onPostExcute2 ", "" + value);
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
@@ -391,10 +348,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             } else if (value == 2) {
 
 
-                Toast.makeText(getApplicationContext(),"아이디 또는 비밀번호가 일치하지 않습니다."+value,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "아이디 또는 비밀번호가 일치하지 않습니다." + value, Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
-            }else if (value == 3){
-                Toast.makeText(getApplicationContext(),"회원가입 성공 ! "+value,Toast.LENGTH_SHORT).show();
+            } else if (value == 3) {
+                Toast.makeText(getApplicationContext(), "회원가입 성공 ! " + value, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
             }
