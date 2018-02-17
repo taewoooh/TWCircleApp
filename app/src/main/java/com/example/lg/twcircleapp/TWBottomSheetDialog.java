@@ -39,15 +39,16 @@ import com.google.firebase.auth.GoogleAuthProvider;
  * Created by charlie on 2017. 11. 22
  */
 
-public class TWBottomSheetDialog extends BottomSheetDialogFragment implements View.OnClickListener,GoogleApiClient.OnConnectionFailedListener{
+public class TWBottomSheetDialog extends BottomSheetDialogFragment implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
     private static final int RC_SIGN_IN = 10;
     private GoogleApiClient mGoogleApiClient;
     private FirebaseAuth mAuth;
     private CallbackManager mCallbackManager;
 
 
-
-    public static TWBottomSheetDialog getInstance() { return new TWBottomSheetDialog(); }
+    public static TWBottomSheetDialog getInstance() {
+        return new TWBottomSheetDialog();
+    }
 
     private LinearLayout twitter;
     private LinearLayout google;
@@ -58,7 +59,7 @@ public class TWBottomSheetDialog extends BottomSheetDialogFragment implements Vi
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.bottom_sheet_dialog, container,false);
+        View view = inflater.inflate(R.layout.bottom_sheet_dialog, container, false);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -70,7 +71,7 @@ public class TWBottomSheetDialog extends BottomSheetDialogFragment implements Vi
                 .build();
 
         mGoogleApiClient = new GoogleApiClient.Builder(getActivity())
-                .enableAutoManage(getActivity() /* FragmentActivity */,  this /* OnConnectionFailedListener */)
+                .enableAutoManage(getActivity()/* FragmentActivity */, this /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
@@ -108,6 +109,13 @@ public class TWBottomSheetDialog extends BottomSheetDialogFragment implements Vi
         return view;
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        mGoogleApiClient.stopAutoManage(getActivity());
+        mGoogleApiClient.disconnect();
+    }
+
     private void handleFacebookAccessToken(AccessToken token) {
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
@@ -115,11 +123,11 @@ public class TWBottomSheetDialog extends BottomSheetDialogFragment implements Vi
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
 
-                if (!task.isSuccessful()){
+                if (!task.isSuccessful()) {
 
-                }else {
+                } else {
 
-                    Log.e("facebook 아이디 연동 성공","");
+                    Log.e("facebook 아이디 연동 성공", "");
                     //Toast.makeText(LoginActivity.this,"Facebook 아이디 연동 성공 ",Toast.LENGTH_SHORT).show();
                 }
 
@@ -145,6 +153,7 @@ public class TWBottomSheetDialog extends BottomSheetDialogFragment implements Vi
             }
         }
     }
+
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
 
 
@@ -169,9 +178,9 @@ public class TWBottomSheetDialog extends BottomSheetDialogFragment implements Vi
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.twitter:
-                Toast.makeText(getContext(),"Message", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Message", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.google:
 
@@ -179,18 +188,18 @@ public class TWBottomSheetDialog extends BottomSheetDialogFragment implements Vi
                 Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
                 startActivityForResult(signInIntent, RC_SIGN_IN);
 
-                Intent intent = new Intent(getActivity(),MainActivity.class);
+                Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
 
 
                 break;
             case R.id.kakao:
-                Toast.makeText(getContext(),"Cloud", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Cloud", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.facebook:
 
                 loginButton.performClick();
-                Toast.makeText(getContext(),"Bluetooth", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Bluetooth", Toast.LENGTH_SHORT).show();
                 break;
 
         }
