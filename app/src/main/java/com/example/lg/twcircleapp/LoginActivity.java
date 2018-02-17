@@ -29,6 +29,12 @@ import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -42,6 +48,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.rengwuxian.materialedittext.MaterialEditText;
@@ -57,21 +64,23 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     MaterialEditText editid, editpassword;
     ImageView delete, delete2, hide;
     RelativeLayout layout, relativeLayout;
     Button loginbtn;
+    private FirebaseAuth mAuth;
     LoginButton loginButton;
     SuperToast toast;
     TextView view, warning;
     InputMethodManager imm;
     boolean aBoolean;
-    boolean booid, boopass;
+    boolean booid, boopass, loggedIn;
     static int value = 0;
     static String test;
     long mNow;
+    /*private CallbackManager mCallbackManager;*/
     Date mDate;
     SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
@@ -94,7 +103,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         view = (TextView) findViewById(R.id.textlogin);
         loginbtn = (Button) findViewById(R.id.loginbtn);
         warning = (TextView) findViewById(R.id.warning);
-        loginButton = (LoginButton) findViewById(R.id.loginbutton);
 
 
         loginbtn.setOnTouchListener(new View.OnTouchListener() {
@@ -198,7 +206,47 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         });
 
 
+        /*mCallbackManager = CallbackManager.Factory.create();
+        loginButton = (LoginButton) findViewById(R.id.loginbutton);
+        loginButton.setReadPermissions("email");
+        // If using in a fragment
+
+        // Callback registration
+        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                handleFacebookAccessToken(loginResult.getAccessToken());
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+
+            }
+        });*/
+
     }
+
+  /*  private void handleFacebookAccessToken(AccessToken token) {
+
+        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+        mAuth.signInWithCredential(credential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+
+                if (!task.isSuccessful()){
+
+                }else {
+                    Toast.makeText(LoginActivity.this,"Facebook 아이디 연동 성공 ",Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+    }*/
 
 
     @Override
@@ -209,7 +257,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             editid.setText(null);
         } else if (v.getId() == R.id.hide) {
 
-
+            Toast.makeText(getApplicationContext(), "테스트" + loggedIn, Toast.LENGTH_SHORT).show();
             if (aBoolean == true) {
 
                 editpassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
@@ -298,10 +346,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         return mFormat.format(mDate);
     }
 
-    @Override
+    /*@Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
-    }
+    }*/
 
     private class Logintask extends AsyncTask<Void, Void, Void> {
 
