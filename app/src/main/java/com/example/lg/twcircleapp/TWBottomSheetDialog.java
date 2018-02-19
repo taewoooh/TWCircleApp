@@ -83,17 +83,18 @@ public class TWBottomSheetDialog extends BottomSheetDialogFragment implements Vi
         loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+                Log.e("test", "");
                 handleFacebookAccessToken(loginResult.getAccessToken());
             }
 
             @Override
             public void onCancel() {
-
+                Log.e("test", "");
             }
 
             @Override
             public void onError(FacebookException error) {
-
+                Log.e("test", "");
             }
         });
 
@@ -122,9 +123,9 @@ public class TWBottomSheetDialog extends BottomSheetDialogFragment implements Vi
         mAuth.signInWithCredential(credential).addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-
+                Log.e("test", "");
                 if (!task.isSuccessful()) {
-
+                    Log.e("test", "");
                 } else {
 
                     Log.e("facebook 아이디 연동 성공", "");
@@ -139,15 +140,18 @@ public class TWBottomSheetDialog extends BottomSheetDialogFragment implements Vi
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         mCallbackManager.onActivityResult(requestCode, resultCode, data);
-
+        Log.e("test", "");
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
+            Log.e("test", "");
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if (result.isSuccess()) {
+                Log.e("test", "");
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
             } else {
+                Log.e("구글 로그인성공", "");
                 // Google Sign In failed, update UI appropriately
                 // ...
             }
@@ -162,13 +166,14 @@ public class TWBottomSheetDialog extends BottomSheetDialogFragment implements Vi
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        Log.e("test", "");
                         if (task.isSuccessful()) {
 
-
+                            Log.e("test", "");
                             // Sign in success, update UI with the signed-in user's information
 
                         } else {
-
+                            Log.e("구글 로그인성공", "");
                         }
 
                         // ...
@@ -180,7 +185,7 @@ public class TWBottomSheetDialog extends BottomSheetDialogFragment implements Vi
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.twitter:
-                Toast.makeText(getContext(), "Message", Toast.LENGTH_SHORT).show();
+
                 break;
             case R.id.google:
 
@@ -192,14 +197,16 @@ public class TWBottomSheetDialog extends BottomSheetDialogFragment implements Vi
                 startActivity(intent);
 
 
+
+
                 break;
             case R.id.kakao:
-                Toast.makeText(getContext(), "Cloud", Toast.LENGTH_SHORT).show();
+
                 break;
             case R.id.facebook:
 
                 loginButton.performClick();
-                Toast.makeText(getContext(), "Bluetooth", Toast.LENGTH_SHORT).show();
+
                 break;
 
         }
@@ -208,6 +215,6 @@ public class TWBottomSheetDialog extends BottomSheetDialogFragment implements Vi
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
+        Log.e("test", "");
     }
 }
