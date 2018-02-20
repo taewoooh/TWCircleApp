@@ -51,8 +51,9 @@
         android:id="@+id/editpassword"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editid"
+        android:layout_alignStart="@+id/editid"
         android:layout_below="@+id/editid"
-        android:layout_centerHorizontal="true"
         android:hint="password"
         android:inputType="textPassword"
         android:textCursorDrawable="@null"
@@ -65,16 +66,14 @@
 
     <TextView
         android:id="@+id/warning"
-        android:layout_below="@+id/editpassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="10dp"
+        android:layout_below="@+id/editpassword"
         android:paddingLeft="47dp"
-        android:visibility="invisible"
         android:text="이메일 또는 비밀번호가 틀렸습니다."
         android:textColor="#d50000"
-
-        />
+        android:textSize="10dp"
+        android:visibility="invisible" />
 
 
     <ImageView
@@ -108,41 +107,41 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:background="#1E88E5"
-        android:text="로그인"
+        android:text="Login"
+        android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textSize="15dp"
         android:textStyle="bold" />
 
-
-
-
     <TextView
-        android:id="@+id/textlogin"
+        android:id="@+id/or"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/loginbtn"
-        android:layout_marginTop="40dp"
+        android:layout_below="@+id/loginbtn"
+        android:layout_marginTop="10dp"
         android:gravity="center"
-        android:text="다른 방법으로 로그인"
+        android:text="or"
         android:textColor="@android:color/white"
-        android:textStyle="bold" />
-
-    <android.support.design.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.design.widget.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay">
+        android:textSize="14dp" />
 
 
-        </android.support.design.widget.AppBarLayout>
+    <Button
+        android:id="@+id/signbtn"
+        android:layout_width="320dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/or"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/white"
+        android:drawableLeft="@drawable/googleg_standard_color_18"
+        android:drawablePadding="-15dp"
+        android:paddingLeft="10dp"
+        android:text="Sign in Google"
+        android:textAllCaps="false"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="14dp">
 
-        <include layout="@layout/content_main" />
-
-
-    </android.support.design.widget.CoordinatorLayout>
+    </Button>
 
 
 </RelativeLayout>
