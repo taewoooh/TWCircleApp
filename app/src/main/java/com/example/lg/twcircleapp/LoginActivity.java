@@ -90,6 +90,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        Log.e("onCreate", "" + value);
+
         mAuth = FirebaseAuth.getInstance();
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -102,7 +105,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
-        Log.e("onCreate", "" + value);
 
         editid = (MaterialEditText) findViewById(R.id.editid);
         editpassword = (MaterialEditText) findViewById(R.id.editpassword);
@@ -314,37 +316,39 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             editpassword.setText(null);
         } else if (v.getId() == R.id.loginbtn) {
 
+
             TWPreference pre = new TWPreference(LoginActivity.this);
             String userid = editid.getText().toString();
             String userpassword = editpassword.getText().toString();
             String usertime = getTime();
 
+
             com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     try {
+                        Log.e("onResponse 전", " : " +value );
                         JSONObject jsonReponse = new JSONObject(response);
                         value = jsonReponse.getInt("value");
 
-                        Log.e("onResponse", "" + value + "<  >" + test);
+                        new Lodingtask(LoginActivity.this,value).execute();
+
+                        Log.e("onResponse 후", " : " +value );
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
+
                 }
             };
             RegisterRequest registerRequest = new RegisterRequest(userid, userpassword, usertime, responseListener);
             RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
             queue.add(registerRequest);
-            Log.e("loginbtn click", "" + value);
-            Logintask task = new Logintask();
-            task.execute();
-            Log.e("loginbtn click after", "" + value);
 
-        }/*else if (v.getId() == R.id.googlebtn){
-            Toast.makeText(LoginActivity.this,"googlebtn",Toast.LENGTH_SHORT).show();
-           signbtn.performClick();
+            Log.e("onResponse 후2", " : " +value );
 
-        }*/
+
+
+        }
 
     }
 
@@ -378,7 +382,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
-    private class Logintask extends AsyncTask<Void, Void, Void> {
+    /*private class Logintask extends AsyncTask<Void, Void, Void> {
 
 
         CustomProgressDialog dialog = new CustomProgressDialog(LoginActivity.this);
@@ -435,7 +439,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
 
 
-    }
+    }*/
 
 
 }
