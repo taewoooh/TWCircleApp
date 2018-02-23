@@ -74,6 +74,7 @@ public class Lodingtask extends AsyncTask<Void, Void, Void> {
             Toast.makeText(context, "회원가입 성공 ! " + value, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(context, MainActivity.class);
             context.startActivity(intent);
+            dialog.dismiss();
         }
 
 

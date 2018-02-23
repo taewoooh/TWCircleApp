@@ -123,6 +123,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         signbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                new Lodingtask(LoginActivity.this).execute();
 
                Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
                 startActivityForResult(signInIntent, RC_SIGN_IN);
@@ -269,6 +270,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         if (!task.isSuccessful()) {
 
                         } else {
+
                             Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                             startActivity(intent);
                             Toast.makeText(LoginActivity.this, "Firebase아이디 생성이 완료되었습니다.", Toast.LENGTH_SHORT).show();
@@ -382,64 +384,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
-    /*private class Logintask extends AsyncTask<Void, Void, Void> {
-
-
-        CustomProgressDialog dialog = new CustomProgressDialog(LoginActivity.this);
-
-
-        @Override
-        protected void onPreExecute() {
-
-            Log.e("Logintask onPreExecute", "" + value);
-            dialog.show();
-
-            super.onPreExecute();
-        }
-
-        @Override
-        protected Void doInBackground(Void... params) {
-
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-
-            }
-
-
-            return null;
-        }
-
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            if (value == 1) {
-
-
-                Log.e("onPostExcute ", "" + value);
-                dialog.dismiss();
-                finish();
-                Toast.makeText(getApplicationContext(), "로그인 성공!" + value, Toast.LENGTH_SHORT).show();
-                Log.e("onPostExcute2 ", "" + value);
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
-
-            } else if (value == 2) {
-
-
-                Toast.makeText(getApplicationContext(), "아이디 또는 비밀번호가 일치하지 않습니다." + value, Toast.LENGTH_SHORT).show();
-                dialog.dismiss();
-            } else if (value == 3) {
-                Toast.makeText(getApplicationContext(), "회원가입 성공 ! " + value, Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
-
-
-        }
-
-
-    }*/
 
 
 }
