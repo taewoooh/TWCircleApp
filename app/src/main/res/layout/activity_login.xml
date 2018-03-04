@@ -64,6 +64,8 @@
         app:met_primaryColor="?colorAccent"
         app:met_singleLineEllipsis="true" />
 
+
+
     <TextView
         android:id="@+id/warning"
         android:layout_width="match_parent"
@@ -107,7 +109,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:background="#1E88E5"
-        android:text="Login"
+        android:text="계속하기"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textSize="15dp"
@@ -136,7 +138,7 @@
         android:drawableLeft="@drawable/googleg_standard_color_18"
         android:drawablePadding="-15dp"
         android:paddingLeft="10dp"
-        android:text="Sign in Google"
+        android:text="Google로 계속하기"
         android:textAllCaps="false"
         android:textColor="@android:color/darker_gray"
         android:textSize="14dp">

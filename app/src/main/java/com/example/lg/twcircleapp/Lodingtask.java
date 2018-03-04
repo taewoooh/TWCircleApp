@@ -1,8 +1,10 @@
 package com.example.lg.twcircleapp;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -67,8 +69,24 @@ public class Lodingtask extends AsyncTask<Void, Void, Void> {
 
         } else if (value == 2) {
 
+            AlertDialog.Builder builder = new AlertDialog.Builder(context,R.style.MyAlertDialogStyle);
+            builder.setTitle("비밀번호 오류");
+            builder.setMessage("비밀번호가 틀렸습니다 다시 시도해주세요");
+            builder.setPositiveButton("비밀번호 재설정", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Toast.makeText(context,"비밀번호 재설정",Toast.LENGTH_SHORT).show();
+                }
+            });
+            builder.setNegativeButton("확인", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Toast.makeText(context,"확인",Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                }
+            });
 
-            Toast.makeText(context, "아이디 또는 비밀번호가 일치하지 않습니다." + value, Toast.LENGTH_SHORT).show();
+            builder.create().show();
             dialog.dismiss();
         } else if (value == 3) {
             Toast.makeText(context, "회원가입 성공 ! " + value, Toast.LENGTH_SHORT).show();

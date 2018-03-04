@@ -118,6 +118,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         or = (TextView) findViewById(R.id.or);
         signbtn = (Button) findViewById(R.id.signbtn);
 
+
+
         or.setAlpha(0.5f);
 
         signbtn.setOnClickListener(new View.OnClickListener() {
@@ -164,6 +166,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         loginbtn.setAlpha(0.5f);
         loginbtn.setClickable(false);
         loginbtn.setEnabled(false);
+
 
         delete.setOnClickListener(this);
         delete2.setOnClickListener(this);

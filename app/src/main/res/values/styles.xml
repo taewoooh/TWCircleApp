@@ -10,7 +10,10 @@
         <item name="windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
 
+    </style>
 
+    <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@android:color/darker_gray</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
