@@ -44,7 +44,10 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".PasswordResetActivity"></activity>
+        <activity android:name=".PasswordResetActivity" />
+        <activity android:name=".DialogActivity"
+            android:theme="@android:style/ThemeOverlay.Material.Dialog.Alert">
+        </activity>
     </application>
 
 </manifest>

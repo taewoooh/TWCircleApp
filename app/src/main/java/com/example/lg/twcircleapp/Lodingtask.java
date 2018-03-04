@@ -68,25 +68,8 @@ public class Lodingtask extends AsyncTask<Void, Void, Void> {
             context.startActivity(intent);
 
         } else if (value == 2) {
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(context,R.style.MyAlertDialogStyle);
-            builder.setTitle("비밀번호 오류");
-            builder.setMessage("비밀번호가 틀렸습니다 다시 시도해주세요");
-            builder.setPositiveButton("비밀번호 재설정", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Toast.makeText(context,"비밀번호 재설정",Toast.LENGTH_SHORT).show();
-                }
-            });
-            builder.setNegativeButton("확인", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Toast.makeText(context,"확인",Toast.LENGTH_SHORT).show();
-                    dialog.dismiss();
-                }
-            });
-
-            builder.create().show();
+            Intent intent = new Intent(context, DialogActivity.class);
+            context.startActivity(intent);
             dialog.dismiss();
         } else if (value == 3) {
             Toast.makeText(context, "회원가입 성공 ! " + value, Toast.LENGTH_SHORT).show();
