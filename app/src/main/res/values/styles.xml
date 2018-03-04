@@ -12,9 +12,7 @@
 
     </style>
 
-    <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog">
-        <item name="colorAccent">@android:color/darker_gray</item>
-    </style>
+
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
