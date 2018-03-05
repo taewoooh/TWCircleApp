@@ -1,5 +1,6 @@
 package com.example.lg.twcircleapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,6 +14,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
     ImageView backimage,delete;
     MaterialEditText editid;
+    String id;
 
 
     @Override
@@ -20,9 +22,16 @@ public class ResetPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
 
+
+
+
+
+
         backimage =(ImageView)  findViewById(R.id.backimage);
         delete = (ImageView) findViewById(R.id.delete);
         editid = (MaterialEditText) findViewById(R.id.editid);
+
+
 
         editid.addTextChangedListener(new TextWatcher() {
             @Override

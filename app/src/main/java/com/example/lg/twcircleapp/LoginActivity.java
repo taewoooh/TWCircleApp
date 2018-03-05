@@ -360,9 +360,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         }else if (v.getId() == R.id.text2){
 
-            String id = editid.getText().toString();
+
             Intent intent = new Intent(this,ResetPasswordActivity.class);
-            intent.putExtra("id",id);
+
             startActivity(intent);
         }
 
