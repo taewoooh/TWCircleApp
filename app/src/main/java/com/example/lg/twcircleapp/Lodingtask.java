@@ -68,8 +68,7 @@ public class Lodingtask extends AsyncTask<Void, Void, Void> {
             context.startActivity(intent);
 
         } else if (value == 2) {
-            Intent intent = new Intent(context, DialogActivity.class);
-            context.startActivity(intent);
+            Toast.makeText(context, "비밀번호 오류  " + value, Toast.LENGTH_SHORT).show();
             dialog.dismiss();
         } else if (value == 3) {
             Toast.makeText(context, "회원가입 성공 ! " + value, Toast.LENGTH_SHORT).show();

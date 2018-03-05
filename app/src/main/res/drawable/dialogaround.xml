@@ -11,7 +11,7 @@
             <gradient android:startColor="#ffffff"
                 android:endColor="#ffffff"/>
 
-            <corners android:radius="25dip"/>
+            <corners android:radius="10dip"/>
 
 
         </shape>

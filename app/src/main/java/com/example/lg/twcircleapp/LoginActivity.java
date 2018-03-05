@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     Button loginbtn,signbtn;
     LoginButton loginButton;
     SuperToast toast;
-    TextView warning, or;
+    TextView warning, or,text;
     InputMethodManager imm;
     boolean aBoolean;
     boolean booid, boopass, loggedIn;
@@ -117,6 +117,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         warning = (TextView) findViewById(R.id.warning);
         or = (TextView) findViewById(R.id.or);
         signbtn = (Button) findViewById(R.id.signbtn);
+        text = (TextView) findViewById(R.id.text2);
+
+
+
 
 
 
@@ -173,6 +177,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         hide.setOnClickListener(this);
         layout.setOnClickListener(this);
         loginbtn.setOnClickListener(this);
+        text.setOnClickListener(this);
 
 
         editid.addTextChangedListener(new TextWatcher() {
@@ -353,6 +358,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
 
+        }else if (v.getId() == R.id.text2){
+
+            String id = editid.getText().toString();
+            Intent intent = new Intent(this,ResetPasswordActivity.class);
+            intent.putExtra("id",id);
+            startActivity(intent);
         }
 
     }
@@ -385,6 +396,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+    }
+    @Override
+    public void onBackPressed() { //super.onBackPressed();
+      super.onBackPressed();
     }
 
 

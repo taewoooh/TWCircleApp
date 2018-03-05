@@ -45,9 +45,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".PasswordResetActivity" />
-        <activity
-            android:name=".DialogActivity"
-            android:theme="@android:style/ThemeOverlay.Material.Dialog.Alert"></activity>
         <activity android:name=".ResetPasswordActivity"></activity>
     </application>
 
