@@ -5,7 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.rengwuxian.materialedittext.MaterialEditText;
@@ -15,6 +17,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
     ImageView backimage,delete;
     MaterialEditText editid;
     String id;
+    Button loginbtn;
 
 
     @Override
@@ -30,7 +33,21 @@ public class ResetPasswordActivity extends AppCompatActivity {
         backimage =(ImageView)  findViewById(R.id.backimage);
         delete = (ImageView) findViewById(R.id.delete);
         editid = (MaterialEditText) findViewById(R.id.editid);
+        loginbtn = (Button)  findViewById(R.id.loginbtn);
 
+        loginbtn.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    loginbtn.setAlpha(0.5f);
+
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    loginbtn.setAlpha(1.0f);
+
+                }
+                return false;
+            }
+        });
 
 
         editid.addTextChangedListener(new TextWatcher() {
@@ -72,4 +89,5 @@ public class ResetPasswordActivity extends AppCompatActivity {
         });
 
     }
+
 }
