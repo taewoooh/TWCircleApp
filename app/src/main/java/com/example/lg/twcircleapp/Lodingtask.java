@@ -18,6 +18,7 @@ public class Lodingtask extends AsyncTask<Void, Void, Void> {
     static int value = 0;
     CustomProgressDialog dialog;
 
+
     public Lodingtask(Context con) {
         this.context = con;
         dialog = new CustomProgressDialog(context);
@@ -34,6 +35,7 @@ public class Lodingtask extends AsyncTask<Void, Void, Void> {
     protected void onPreExecute() {
 
         Log.e("Logintask onPreExecute", "" + value);
+
         dialog.show();
 
         super.onPreExecute();

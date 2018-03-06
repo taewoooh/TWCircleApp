@@ -28,6 +28,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="90dp"
         android:hint="Email"
+        android:cursorVisible="true"
+        android:textCursorDrawable="@color/com_facebook_button_background_color_disabled"
         android:textSize="20dp"
         app:met_baseColor="@android:color/white"
         app:met_floatingLabel="highlight"
