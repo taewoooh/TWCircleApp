@@ -25,6 +25,11 @@ public class ResetPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
 
+        Intent intent = getIntent();
+
+        String id = intent.getStringExtra("id");
+
+
 
 
 
@@ -34,6 +39,14 @@ public class ResetPasswordActivity extends AppCompatActivity {
         delete = (ImageView) findViewById(R.id.delete);
         editid = (MaterialEditText) findViewById(R.id.editid);
         loginbtn = (Button)  findViewById(R.id.loginbtn);
+
+        editid.setText(id);
+        editid.setSelection(editid.getText().length()); //포커스를 editid 끝으로 둔다.
+
+        if (editid.getText().length()>0){
+
+            delete.setVisibility(View.VISIBLE);
+        }
 
         loginbtn.setOnTouchListener(new View.OnTouchListener() {
             @Override
