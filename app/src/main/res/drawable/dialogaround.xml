@@ -7,9 +7,10 @@
         <shape>
 
 
-            <stroke android:width="2.0dip" android:color="#ffffff"/>
-            <gradient android:startColor="#ffffff"
-                android:endColor="#ffffff"/>
+
+            <gradient android:startColor="@color/colorAccent"
+                android:centerColor="@color/common_google_signin_btn_text_dark_default"
+                android:endColor="@color/com_facebook_button_background_color"/>
 
             <corners android:radius="10dip"/>
 
