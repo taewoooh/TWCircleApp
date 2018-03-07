@@ -3,31 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_add"
-        android:enabled="true"
-        android:icon="@drawable/ic_add"
-        android:title="Add"
-        app:showAsAction="ifRoom"/>
+        android:id="@+id/home"
+        android:icon="@drawable/ic_home" />
 
     <item
-        android:id="@+id/action_edit"
-        android:enabled="true"
-        android:icon="@drawable/ic_edit"
-        android:title="Edit"
-        app:showAsAction="ifRoom"/>
+        android:id="@+id/search"
+        android:icon="@drawable/ic_search" />
 
     <item
-        android:id="@+id/action_remove"
-        android:enabled="true"
-        android:icon="@drawable/ic_remove"
-        android:title="Remove"
-        app:showAsAction="ifRoom"/>
+        android:id="@+id/like"
+        android:icon="@drawable/ic_message" />
 
     <item
-        android:id="@+id/action_add"
-        android:enabled="true"
-        android:icon="@drawable/ic_add"
-        android:title="Add"
-        app:showAsAction="ifRoom"/>
+        android:id="@+id/myprofile"
+        android:icon="@drawable/ic_profile" />
+
+
 
 </menu>
