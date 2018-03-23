@@ -49,9 +49,6 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main" />
-        <activity android:name=".MessageActivity" />
-        <activity android:name=".SearchActivity" />
-        <activity android:name=".ProfileActivity"></activity>
     </application>
 
 </manifest>

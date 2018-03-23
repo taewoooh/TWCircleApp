@@ -1,64 +1,52 @@
 package com.example.lg.twcircleapp;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
-    private TextView mTextMessage;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        mTextMessage = (TextView) findViewById(R.id.message);
-
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView bottomNavigationView = (BottomNavigationView)
+                findViewById(R.id.navigation);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
 
-        bottomNavigationView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
-            @Override
-            public void onNavigationItemReselected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
+        bottomNavigationView.setOnNavigationItemSelectedListener
+                (new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        Fragment selectedFragment = null;
+                        switch (item.getItemId()) {
+                            case R.id.ic_home:
+                                selectedFragment = ItemOneFragment.newInstance();
+                                break;
+                            case R.id.ic_message:
+                                selectedFragment = ItemTwoFragment.newInstance();
+                                break;
+                            case R.id.ic_profile:
+                                selectedFragment = ItemThreeFragment.newInstance();
+                                break;
+                        }
+                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                        transaction.replace(R.id.frame_layout, selectedFragment);
+                        transaction.commit();
+                        return true;
+                    }
+                });
 
+        //Manually displaying the first fragment - one time only
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_layout, ItemOneFragment.newInstance());
+        transaction.commit();
 
-
-                    case R.id.ic_search:
-                        Toast.makeText(MainActivity.this, "search", Toast.LENGTH_SHORT).show();
-                       Intent intent2 = new Intent(MainActivity.this,SearchActivity.class);
-                        startActivity(intent2);
-                        overridePendingTransition(0,0);
-                        break;
-
-                    case R.id.ic_message:
-                        Toast.makeText(MainActivity.this, "message", Toast.LENGTH_SHORT).show();
-                        Intent intent3 = new Intent(MainActivity.this,MessageActivity.class);
-                        startActivity(intent3);
-                        overridePendingTransition(0,0);
-                        break;
-                    case R.id.ic_profile:
-                        Toast.makeText(MainActivity.this, "profile", Toast.LENGTH_SHORT).show();
-                        Intent intent4 = new Intent(MainActivity.this,ProfileActivity.class);
-                        startActivity(intent4);
-                        overridePendingTransition(0,0);
-                        break;
-
-                }
-            }
-        });
-
-
+        //Used to select an item programmatically
+        //bottomNavigationView.getMenu().getItem(2).setChecked(true);
     }
-
 }
