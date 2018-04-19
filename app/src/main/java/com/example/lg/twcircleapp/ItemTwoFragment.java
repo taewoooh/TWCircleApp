@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 public class ItemTwoFragment extends Fragment {
     public static ItemTwoFragment newInstance() {
@@ -15,6 +16,8 @@ public class ItemTwoFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Toast.makeText(getActivity(),"two",Toast.LENGTH_SHORT).show();
     }
 
     @Override

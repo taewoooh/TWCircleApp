@@ -33,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
                             case R.id.ic_profile:
                                 selectedFragment = ItemThreeFragment.newInstance();
                                 break;
+                            case R.id.ic_profile2:
+                                selectedFragment = ItemFourFragment.newInstance();
+                                break;
                         }
                         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                         transaction.replace(R.id.frame_layout, selectedFragment);

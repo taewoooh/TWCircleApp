@@ -18,7 +18,7 @@ public class BottomNavigationViewHelper {
             shiftingMode.setBoolean(menuView, false);
             shiftingMode.setAccessible(false);
 
-            if (menuView.getChildCount() < 6) {
+            if (menuView.getChildCount() < 4) {
                 for (int i = 0; i < menuView.getChildCount(); i++) {
                     BottomNavigationItemView item = (BottomNavigationItemView) menuView.getChildAt(i);
                     //noinspection RestrictedApi

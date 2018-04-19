@@ -7,15 +7,15 @@
 
     <item
         android:id="@+id/ic_message"
+        android:icon="@drawable/cameraplus" />
+
+    <item
+        android:id="@+id/ic_profile"
         android:icon="@drawable/ic_message" />
 
     <item
-        android:id="@+id/ic_profile"
-        android:icon="@drawable/ic_search" />
-
-    <item
-        android:id="@+id/ic_profile"
-        android:icon="@drawable/ic_search" />
+        android:id="@+id/ic_profile2"
+        android:icon="@drawable/ic_profile" />
 
 
 

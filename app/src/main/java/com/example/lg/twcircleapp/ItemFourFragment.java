@@ -7,22 +7,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-public class ItemThreeFragment extends Fragment {
-    public static ItemThreeFragment newInstance() {
-        ItemThreeFragment fragment = new ItemThreeFragment();
+public class ItemFourFragment extends Fragment {
+    public static ItemFourFragment newInstance() {
+        ItemFourFragment fragment = new ItemFourFragment();
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Toast.makeText(getActivity(),"Four", Toast.LENGTH_SHORT).show();
 
-        Toast.makeText(getActivity(),"three", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_item_three, container, false);
+        return inflater.inflate(R.layout.fragment_item_four, container, false);
     }
 }
