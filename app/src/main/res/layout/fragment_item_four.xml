@@ -6,8 +6,168 @@
     android:background="@android:color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="com.example.lg.jungigirl.MenuActivity">
 
+
+    <ImageView
+        android:id="@+id/proback"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="#E0E0E0">
+
+    </ImageView>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@android:color/white">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/toolmenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/toolmenu"
+                android:layout_marginRight="20dp"/>
+            <ImageView
+                android:id="@+id/backkey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/back"/>
+
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/relative"
+        android:layout_centerHorizontal="true"></RelativeLayout>
+
+    <com.example.lg.twcircleapp.CircleImageView
+        android:id="@+id/circle"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="196dp"
+        android:background="@drawable/user" />
+
+    <ImageView
+        android:id="@+id/cir"
+        android:layout_width="138dp"
+        android:layout_height="138dp"
+        android:layout_alignBottom="@+id/username"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="45dp"
+        android:background="@drawable/circle" />
+
+    <TextView
+        android:id="@+id/total"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="20000"
+        android:textColor="@android:color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_above="@+id/totaltext"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/circle"
+        android:layout_toEndOf="@+id/circle" />
+
+    <TextView
+        android:id="@+id/totaltext"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/circle"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/circle"
+
+        android:gravity="center"
+        android:text="Total"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="20dp" />
+
+
+    <TextView
+        android:id="@+id/today"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/todaytext"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/circle"
+        android:gravity="center"
+        android:text="4034"
+        android:textColor="@android:color/black"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/todaytext"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/circle"
+        android:layout_toLeftOf="@+id/circle"
+        android:layout_toStartOf="@+id/circle"
+        android:gravity="center"
+        android:text="Today"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="20dp" />
+
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:gravity="center"
+        android:maxLength="20"
+        android:textCursorDrawable="@android:color/darker_gray"
+        android:background="@android:color/white"
+        android:textColor="@android:color/black"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:layout_below="@+id/circle"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
+    <EditText
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/username"
+        android:layout_marginLeft="40dp"
+        android:textCursorDrawable="@android:color/darker_gray"
+        android:layout_marginRight="40dp"
+        android:background="@android:color/white"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:textSize="15dp" />
+
+    <RelativeLayout
+        android:id="@+id/relative"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_below="@+id/content"
+        android:layout_marginTop="5dp"
+        android:background="#E0E0E0">
+
+
+    </RelativeLayout>
 
 
 </RelativeLayout>
