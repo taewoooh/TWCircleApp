@@ -109,7 +109,7 @@ public class ItemFourFragment extends Fragment implements View.OnClickListener, 
             case R.id.toolmenu:
                 Toast.makeText(getActivity(), "테스트", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), OptionActivity.class);
-                startActivity(intent);
+                getActivity().startActivity(intent);
                 getActivity().overridePendingTransition(0, 0);
 
                 break;
