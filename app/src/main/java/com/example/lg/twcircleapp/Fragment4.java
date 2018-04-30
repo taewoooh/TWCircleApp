@@ -1,5 +1,12 @@
 package com.example.lg.twcircleapp;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -32,7 +39,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
 
-public class ItemFourFragment extends Fragment implements View.OnClickListener, View.OnKeyListener {
+public class Fragment4 extends Fragment implements View.OnClickListener, View.OnKeyListener {
 
 
     CircleImageView imageView;
@@ -49,8 +56,8 @@ public class ItemFourFragment extends Fragment implements View.OnClickListener, 
     private int GALLERY = 1, CAMERA = 2;
 
 
-    public static ItemFourFragment newInstance() {
-        ItemFourFragment fragment = new ItemFourFragment();
+    public static Fragment4 newInstance() {
+        Fragment4 fragment = new Fragment4();
         return fragment;
     }
 
@@ -65,7 +72,7 @@ public class ItemFourFragment extends Fragment implements View.OnClickListener, 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_item_four, container, false);
+        View v = inflater.inflate(R.layout.activity_fragment4, container, false);
 
 
         toolbar = (Toolbar) v.findViewById(R.id.toolbar);

@@ -3,9 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/relative"
+    android:background="@android:color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:orientation="vertical"
     tools:context="com.example.lg.jungigirl.MenuActivity">
 
 
@@ -16,7 +17,6 @@
         android:background="#E0E0E0">
 
     </ImageView>
-
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -33,14 +33,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/toolmenu" />
-
+                android:background="@drawable/toolmenu"
+                android:layout_marginRight="20dp"/>
             <ImageView
                 android:id="@+id/backkey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/back" />
+                android:background="@drawable/back"/>
 
         </RelativeLayout>
 
@@ -75,16 +74,16 @@
         android:id="@+id/total"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/totaltext"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_toEndOf="@+id/circle"
-        android:layout_toRightOf="@+id/circle"
         android:gravity="center"
         android:text="20000"
         android:textColor="@android:color/black"
         android:textSize="20dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_above="@+id/totaltext"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/circle"
+        android:layout_toEndOf="@+id/circle" />
 
     <TextView
         android:id="@+id/totaltext"
@@ -132,17 +131,17 @@
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/circle"
         android:layout_marginTop="19dp"
-        android:background="@android:color/white"
         android:gravity="center"
         android:maxLength="20"
-        android:textColor="@android:color/black"
         android:textCursorDrawable="@android:color/darker_gray"
+        android:background="@android:color/white"
+        android:textColor="@android:color/black"
         android:textSize="30dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_below="@+id/circle"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
     <EditText
@@ -151,12 +150,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/username"
         android:layout_marginLeft="40dp"
+        android:textCursorDrawable="@android:color/darker_gray"
         android:layout_marginRight="40dp"
-        android:layout_marginTop="20dp"
         android:background="@android:color/white"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:textColor="@android:color/black"
-        android:textCursorDrawable="@android:color/darker_gray"
         android:textSize="15dp" />
 
     <RelativeLayout

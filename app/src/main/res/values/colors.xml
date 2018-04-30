@@ -5,4 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="ddaompyu">#00ff0000</color>
     <color name="statusbar">#F5F5F5</color>
+    <color name="viewback">#F5F5F5</color>
+    <color name="defaulttabicon">#BDBDBD</color>
+    <color name="changetabicon">#212121</color>
 </resources>
