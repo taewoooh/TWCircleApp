@@ -5,26 +5,33 @@ import android.icu.text.NumberFormat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     ImageView image[] = new ImageView[4];
     int num = 0;
     String rid = null;
-    int lid ;
+    int lid;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
 
         image[0] = (ImageView) findViewById(R.id.image1);
@@ -42,6 +49,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         image[1].setOnClickListener(this);
         image[2].setOnClickListener(this);
         image[3].setOnClickListener(this);
+
+
+
 
     }
 
@@ -121,6 +131,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
+
 
 
 }

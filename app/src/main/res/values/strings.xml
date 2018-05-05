@@ -7,5 +7,19 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
 
+    <array name="number">
+
+        <item>1번</item>
+
+        <item>2번</item>
+
+        <item>3번</item>
+
+        <item>4번</item>
+
+        <item>5번</item>
+
+    </array>
+
 
 </resources>

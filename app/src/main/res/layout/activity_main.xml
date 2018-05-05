@@ -7,6 +7,7 @@
     tools:context="com.example.lg.mybottomsheettest.MainFragment">
 
 
+
     <FrameLayout
         android:id="@+id/contents"
         android:layout_width="match_parent"
@@ -17,8 +18,8 @@
         android:id="@+id/view2"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/viewback"
-        android:layout_above="@+id/linearbtn"></View>
+        android:layout_above="@+id/linearbtn"
+        android:background="@color/viewback"></View>
 
     <LinearLayout
         android:id="@+id/linearbtn"
